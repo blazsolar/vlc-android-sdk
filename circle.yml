@@ -15,6 +15,8 @@ jobs:
       - run:
           name: Compile
           command: ./config/circleci/compile-vlc.sh
+      - store_artifacts:
+          path: build/outputs/aar/*
       - run:
           name: Deploy
           command: ./config/circleci/deploy.sh
