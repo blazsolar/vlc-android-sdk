@@ -10,3 +10,6 @@ cd ..
 
 echo "Patch compile options"
 patch -p1 vlc-android/compile-libvlc.sh < compile-libvlc.patch
+
+echo "Patch next frame"
+patch -p0 < next_frame.patch

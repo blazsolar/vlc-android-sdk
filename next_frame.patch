@@ -1,0 +1,38 @@
+diff --git vlc-android/libvlc/jni/libvlcjni-mediaplayer.c vlc-android/libvlc/jni/libvlcjni-mediaplayer.c
+index 353d99dd1..ee04b8fa0 100644
+--- vlc-android/libvlc/jni/libvlcjni-mediaplayer.c
++++ vlc-android/libvlc/jni/libvlcjni-mediaplayer.c
+@@ -292,6 +292,17 @@ Java_org_videolan_libvlc_MediaPlayer_nativeStop(JNIEnv *env, jobject thiz)
+     libvlc_media_player_stop(p_obj->u.p_mp);
+ }
+ 
++void
++Java_org_videolan_libvlc_MediaPlayer_nextFrame(JNIEnv *env, jobject thiz)
++{
++    vlcjni_object *p_obj = VLCJniObject_getInstance(env, thiz);
++
++    if (!p_obj)
++        return;
++
++    libvlc_media_player_next_frame(p_obj->u.p_mp);
++}
++
+ void
+ Java_org_videolan_libvlc_MediaPlayer_pause(JNIEnv *env, jobject thiz)
+ {
+diff --git vlc-android/libvlc/src/org/videolan/libvlc/MediaPlayer.java vlc-android/libvlc/src/org/videolan/libvlc/MediaPlayer.java
+index f88306ad1..f90cc76fc 100644
+--- vlc-android/libvlc/src/org/videolan/libvlc/MediaPlayer.java
++++ vlc-android/libvlc/src/org/videolan/libvlc/MediaPlayer.java
+@@ -1020,6 +1020,11 @@ public class MediaPlayer extends VLCObject<MediaPlayer.Event> {
+      */
+     public native void pause();
+ 
++    /**
++     * Get next frame of media.
++     */
++    public native void nextFrame();
++
+     /**
+      * Get player state.
+      */
